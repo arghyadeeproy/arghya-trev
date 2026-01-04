@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trav. - Hotel Details</title>
+    <link href="{% static 'main/css/style.css' %}" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a3b5966581.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'main/images/logo-red.png' %}">
+</head>
+<body>
+    <nav id="navbar" class="navbar-white">
+        <a href="{% url 'home' %}"><img src="{% static 'main/images/logo-red1.png' %}" class="logo" alt="Trav. Logo"></a>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Check 1</a></li>
+            <li><a href="#">Check 2</a></li>
+            <li><a href="#">Check 3</a></li>
+        </ul>
+        <a href="{% url 'login' %}" class="register-btn">Register Now</a>
+        <i class="fas fa-bars" onclick="togglebtn()"></i>
+    </nav>
+
+    <div class="house-details">
+        <div class="house-title">
+            <h1>Puri Beach Resort</h1>
+            <div class="row">
+                <div>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <span>245 Reviews</span>
+                </div>
+                <div>
+                    <p>Puri, Odisha</p>
+                </div>
+            </div>
+            <div class="gallery">
+                <div class="gallery-img1">
+                    <img src="{% static 'main/images/house-1.png' %}" alt="Main Image">
+                </div>
+                <div><img src="{% static 'main/images/house-2.png' %}" alt=""></div>
+                <div><img src="{% static 'main/images/house-3.png' %}" alt=""></div>
+                <div><img src="{% static 'main/images/house-4.png' %}" alt=""></div>
+                <div><img src="{% static 'main/images/house-5.png' %}" alt=""></div>
+            </div>
+        </div>
+
+        <div class="small-details">
+            <h2>Entire Rental Area Hosted By Rajesh Kumar</h2>
+            <p>6 guest &nbsp; &nbsp; 3 beds &nbsp; &nbsp; 2 Bathroom</p>
+            <h4>$85 /Day</h4>
+        </div>
+
+        <hr class="line">
+
+        <form action="{% url 'payment' %}" class="check-form">
+            <div>
+                <label>Check In</label>
+                <input type="text" placeholder="Add Date">
+            </div>
+            <div>
+                <label>Check Out</label>
+                <input type="text" placeholder="Add Date">
+            </div>
+            <div class="guest-field">
+                <label>Guests</label>
+                <input type="text" placeholder="Select Guests">
+            </div>
+            <a href="{% url 'payment' %}">Book Now</a>
+        </form>
+
+        <ul class="detail-list">
+            <li>
+                <i class="fa-solid fa-house"></i>Entire Home
+                <span>You will have the entire flat for you</span>
+            </li>
+            <li>
+                <i class="fa-solid fa-paint-roller"></i>Enhanced Clean
+                <span>The house is cleaned on a daily basis</span>
+            </li>
+            <li>
+                <i class="fa-solid fa-wifi"></i>Wifi
+                <span>You will be provided with 24/7 Wifi facilities</span>
+            </li>
+            <li>
+                <i class="fa-solid fa-map"></i>Great Location
+                <span>House is well connected with local transportation</span>
+            </li>
+        </ul>
+
+        <hr class="line">
+
+        <p class="home-desc">
+            Experience the ultimate beachfront luxury at Puri Beach Resort. This stunning villa offers breathtaking ocean views, direct beach access, and modern amenities. Perfect for families and groups looking for a memorable coastal getaway. The property features spacious rooms, a fully equipped kitchen, and a beautiful terrace overlooking the Bay of Bengal. Wake up to the sound of waves and enjoy spectacular sunrises from your private balcony. The resort is located just minutes away from the famous Jagannath Temple and offers easy access to local markets and restaurants.
+        </p>
+
+        <hr class="line">
+
+        <div class="map">
+            <h3>Location On Map :</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3736.8!2d85.8315!3d19.8135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19c5b8e0e0e0e1%3A0x1234567890abcdef!2sPuri%2C%20Odisha!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+        <p><hr><br>
+            © Copyright 2022 Sigma Team. All rights reserved.
+        </p>
+    </div>
+
+    <script>
+        var navbar = document.getElementById("navbar");
+        function togglebtn() {
+            navbar.classList.toggle("hidemenu");
+        }
+
+        // Get hotel ID from URL parameter
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        const hotelId = getUrlParameter('hotel');
+
+        // Hotel data
+        const hotels = {
+            '1': {
+                title: 'Puri Beach Resort',
+                location: 'Puri, Odisha',
+                owner: 'Rajesh Kumar',
+                guest: 6,
+                bed: 3,
+                bathroom: 2,
+                price: 85,
+                description: 'Experience the ultimate beachfront luxury at Puri Beach Resort. This stunning villa offers breathtaking ocean views, direct beach access, and modern amenities. Perfect for families and groups looking for a memorable coastal getaway. The property features spacious rooms, a fully equipped kitchen, and a beautiful terrace overlooking the Bay of Bengal. Wake up to the sound of waves and enjoy spectacular sunrises from your private balcony.',
+                mainImage: "{% static 'main/images/house-1.png' %}"
+            },
+            '2': {
+                title: 'Sea View Guest House',
+                location: 'Near Jagannath Temple, Puri',
+                owner: 'Anita Panda',
+                guest: 4,
+                bed: 2,
+                bathroom: 1,
+                price: 45,
+                description: 'Cozy and comfortable guest house located just minutes away from the famous Jagannath Temple. Ideal for pilgrims and tourists seeking an authentic Puri experience. The property offers clean rooms, friendly hospitality, and easy access to local attractions and beaches. Traditional Odia breakfast available on request.',
+                mainImage: "{% static 'main/images/house-2.png' %}"
+            },
+            '3': {
+                title: 'Puri Palace Hotel',
+                location: 'Puri, Odisha',
+                owner: 'Santosh Mohapatra',
+                guest: 8,
+                bed: 4,
+                bathroom: 2,
+                price: 65,
+                description: 'A perfect blend of traditional Odia architecture and modern comfort. This spacious house can accommodate large families and groups. Features include a beautiful courtyard, traditional decor, and all modern amenities including WiFi, air conditioning, and a fully equipped kitchen. Experience authentic Odia hospitality at its finest.',
+                mainImage: "{% static 'main/images/house-3.png' %}"
+            },
+            '4': {
+                title: 'Beachside Cottage',
+                location: 'Puri Beach Road, Odisha',
+                owner: 'Pradeep Das',
+                guest: 4,
+                bed: 2,
+                bathroom: 1,
+                price: 55,
+                description: 'Modern apartment with sea view balcony offering stunning views of the Bay of Bengal. Located on the main beach road, this property provides easy access to the beach, restaurants, and shopping areas. Enjoy your morning coffee while watching the sunrise over the ocean. Perfect for couples and small families.',
+                mainImage: "{% static 'main/images/house-4.png' %}"
+            },
+            '5': {
+                title: 'Budget Hostel',
+                location: 'Puri Beach, Odisha',
+                owner: 'Suman Rout',
+                guest: 2,
+                bed: 1,
+                bathroom: 1,
+                price: 30,
+                description: 'Budget-friendly hostel near beach perfect for solo travelers and backpackers. Clean and comfortable accommodation with shared facilities. Great common area to meet fellow travelers and plan beach adventures together. Walking distance to all major attractions and beach activities.',
+                mainImage: "{% static 'main/images/house-5.png' %}"
+            },
+            '6': {
+                title: 'Luxury Villa',
+                location: 'Puri Premium Area, Odisha',
+                owner: 'Vikram Singh',
+                guest: 10,
+                bed: 5,
+                bathroom: 3,
+                price: 150,
+                description: 'Premium villa with private pool and garden offering the ultimate luxury experience in Puri. This expansive property features multiple bedrooms, each with attached bathrooms, a large living area, modern kitchen, and outdoor entertainment spaces. The private swimming pool and landscaped garden create a perfect oasis for relaxation.',
+                mainImage: "{% static 'main/images/house-1.png' %}"
+            }
+        };
+
+        // Update page content if hotel ID exists
+        if (hotelId && hotels[hotelId]) {
+            const hotel = hotels[hotelId];
+            document.querySelector('.house-title h1').textContent = hotel.title;
+            document.querySelector('.row div:last-child p').textContent = hotel.location;
+            document.querySelector('.small-details h2').innerHTML = `Entire Rental Area Hosted By ${hotel.owner}`;
+            document.querySelector('.small-details p').innerHTML = `${hotel.guest} guest &nbsp; &nbsp; ${hotel.bed} beds &nbsp; &nbsp; ${hotel.bathroom} Bathroom`;
+            document.querySelector('.small-details h4').innerHTML = `$${hotel.price} /Day`;
+            document.querySelector('.home-desc').textContent = hotel.description;
+            document.querySelector('.gallery-img1 img').src = hotel.mainImage;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trav. - Find Your Next Stay</title>
+    <link href="{% static 'main/css/style.css' %}" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a3b5966581.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'main/images/logo-red.png' %}">
+</head>
+<body>
+    <div class="header">
+        <nav id="navbar">
+            <img src="{% static 'main/images/logo-red.png' %}" class="logo" alt="Trav. Logo">
+            <ul class="nav-links">
+                <li><a href="#" id="randomLink" class="active">Plan Random</a></li>
+                <li><a href="{% url 'listing' %}?place=Puri">Puri</a></li>
+                <li><a href="{% url 'listing' %}?place=Chilka">Visit Chilka Lake</a></li>
+            </ul>
+            <a href="{% url 'login' %}" class="register-btn">Register Now</a>
+            <i class="fas fa-bars" onclick="togglebtn()"></i>
+        </nav>
+        
+        <div class="container">
+            <h1>Find Your Next Stay</h1>
+            <div class="search-bar">
+                <form action="{% url 'listing' %}" method="get">
+                    <div class="location-input">
+                        <label for="placeName">Location</label>
+                        <input type="text" id="placeName" name="place" placeholder="Where are you going?">
+                    </div>
+                    <div>
+                        <label>Check In</label>
+                        <input type="text" placeholder="Add Date">
+                    </div>
+                    <div>
+                        <label>Check Out</label>
+                        <input type="text" placeholder="Add Date">
+                    </div>
+                    <div>
+                        <label>Guest</label>
+                        <input type="text" placeholder="Add Guest">
+                    </div>
+                    <button type="submit"><img src="{% static 'main/images/search.png' %}" alt="Search"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="sub-title">Exclusives</h2>
+        <div class="exclusives">
+            <a href="{% url 'listing' %}?place=Bhubaneswar">
+                <div>
+                    <img src="{% static 'main/images/image-1.png' %}" alt="Bhubaneswar">
+                    <span>
+                        <h3>Bhubaneswar</h3>
+                        <p>Starts @ 500$</p>
+                    </span>
+                </div>
+            </a>
+            <a href="{% url 'listing' %}?place=Puri">
+                <div>
+                    <img src="{% static 'main/images/image-2.png' %}" alt="Puri">
+                    <span>
+                        <h3>Puri</h3>
+                        <p>Starts @ 500$</p>
+                    </span>
+                </div>
+            </a>
+            <a href="{% url 'listing' %}?place=Chilka">
+                <div>
+                    <img src="{% static 'main/images/image-3.png' %}" alt="Chilka Lake">
+                    <span>
+                        <h3>Chilka Lake</h3>
+                        <p>Starts @ 500$</p>
+                    </span>
+                </div>
+            </a>
+            <a href="{% url 'listing' %}?place=Lingraj">
+                <div>
+                    <img src="{% static 'main/images/image-4.png' %}" alt="Lingraj Temple">
+                    <span>
+                        <h3>Lingraj Temple</h3>
+                        <p>Starts @ 500$</p>
+                    </span>
+                </div>
+            </a>
+            <a href="{% url 'listing' %}?place=Konark">
+                <div>
+                    <img src="{% static 'main/images/image-5.png' %}" alt="Konark Temple">
+                    <span>
+                        <h3>Konark Temple</h3>
+                        <p>Starts @ 500$</p>
+                    </span>
+                </div>
+            </a>
+        </div>
+
+        <div class="container">
+            <h2 class="sub-title"><section id="trending places">Trending Places</section></h2>
+            <div class="trending">
+                <div>
+                    <a href="{% url 'listing' %}?place=Puri"><img src="{% static 'main/images/dubai.png' %}" alt="Puri"></a>
+                    <h3>Puri</h3>
+                </div>
+                <div>
+                    <a href="{% url 'listing' %}?place=Chilka"><img src="{% static 'main/images/new-york.png' %}" alt="Chilka Lake"></a>
+                    <h3>Chilka Lake</h3>
+                </div>
+                <div>
+                    <a href="{% url 'listing' %}?place=Konark"><img src="{% static 'main/images/new-delhi.png' %}" alt="Konark Temple"></a>
+                    <h3>Konark Temple</h3>
+                </div>
+                <div>
+                    <a href="{% url 'listing' %}?place=Kaleshwar"><img src="{% static 'main/images/paris.png' %}" alt="Kaleshwar Temple"></a>
+                    <h3>Kaleshwar Temple</h3>
+                </div>
+            </div>
+            
+            <div class="cta">
+                <h3>Flying <br> Is Cheaper Now</h3>
+                <p>Great Discounts on Flying <br> Use our code Travel.</p>
+                <a href="#" class="cta-btn">Know More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="sub-title">Travellers Stories</h2>
+        <div class="stories">
+            <div>
+                <img src="{% static 'main/images/story-1.png' %}" alt="Travel Story 1">
+                <p>Popular European Countries With Less Budgets</p>
+            </div>
+            <div>
+                <img src="{% static 'main/images/story-2.png' %}" alt="Travel Story 2">
+                <p>Popular European Countries With Less Budgets</p>
+            </div>
+            <div>
+                <img src="{% static 'main/images/story-3.png' %}" alt="Travel Story 3">
+                <p>Popular European Countries With Less Budgets</p>
+            </div>
+        </div>
+        
+        <div class="abt-msg">
+            <h2>About Message</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco<br> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in <br>voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+        <p><hr><br>
+            © Copyright 2022 Sigma Team. All rights reserved.
+        </p>
+    </div>
+
+    <script>
+        var navbar = document.getElementById("navbar");
+        function togglebtn() {
+            navbar.classList.toggle("hidemenu");
+        }
+
+        const randomRoutes = [
+            "{% url 'listing' %}?place=London",
+            "{% url 'listing' %}?place=Paris",
+            "{% url 'listing' %}?place=NewYork",
+            "{% url 'listing' %}?place=SanFrancisco",
+            "{% url 'listing' %}?place=Switzerland",
+            "{% url 'listing' %}?place=Australia",
+            "{% url 'listing' %}?place=France",
+            "{% url 'listing' %}?place=Dubai",
+            "{% url 'listing' %}?place=NewDelhi",
+            "{% url 'listing' %}?place=Rajasthan"
+        ];
+
+        const randomLink = document.getElementById("randomLink");
+
+        randomLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            const randomIndex = Math.floor(Math.random() * randomRoutes.length);
+            const randomRoute = randomRoutes[randomIndex];
+            window.location.href = randomRoute;
+        });
+    </script>
+</body>
+</html>

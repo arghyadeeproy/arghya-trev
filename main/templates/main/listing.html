@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trav. - Listings</title>
+    <link href="{% static 'main/css/style.css' %}" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a3b5966581.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'main/images/logo-red.png' %}">
+</head>
+<body>
+    <nav id="navbar" class="navbar-white">
+        <a href="{% url 'home' %}"><img src="{% static 'main/images/logo-red1.png' %}" class="logo" alt="Trav. Logo"></a>
+        <ul class="nav-links">
+            <li><a href="?page=1" class="active">Check 1</a></li>
+            <li><a href="?page=2">Check 2</a></li>
+            <li><a href="?page=3">Check 3</a></li>
+        </ul>
+        <a href="{% url 'login' %}" class="register-btn">Register Now</a>
+        <i class="fas fa-bars" onclick="togglebtn()"></i>
+    </nav>
+
+    <div class="container">
+        <div class="list-container">
+            <div class="left-col">
+                <p>{{ total_count }}+ Options</p>
+                <h1>Recommended Places In {{ place_name }}</h1>
+                
+                {% for hotel in hotels %}
+                <!-- Hotel {{ forloop.counter }} -->
+                <div class="house">
+                    <div class="house-img">
+                        <a href="{% url 'hotel' %}?hotel={{ hotel.id }}">
+                            <img src="{% static 'main/images/house-1.png' %}" alt="{{ hotel.property_name }}">
+                        </a>
+                    </div>
+                    <div class="house-info">
+                        <p>{{ hotel.property_type }} in {{ hotel.place_name }}</p>
+                        <h3>{{ hotel.property_name }}</h3>
+                        <p>{{ hotel.bedroom_count }} Bedroom / {{ hotel.bathroom_count }} Bathroom / Wifi / Kitchen</p>
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= hotel.star_rating %}
+                                <i class="fas fa-star"></i>
+                            {% else %}
+                                <i class="far fa-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="house-price">
+                            <p>{{ hotel.guest_count }} Guest</p>
+                            <h4>$ {{ hotel.price }} / <span>Day</span></h4>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No hotels found matching your filters.</p>
+                {% endfor %}
+            </div>
+
+            <div class="right-col">
+                <div class="sidebar">
+                    <form method="GET" action="{% url 'listing' %}" id="filterForm">
+                        <!-- Hidden input to preserve place parameter -->
+                        <input type="hidden" name="place" value="{{ place_param }}">
+                        
+                        <h2>Select Filters</h2>
+                        <h3>Property Type</h3>
+                        <div class="filter">
+                            <input type="checkbox" name="property_type" id="filterHouse" value="House" 
+                                {% if 'House' in selected_property_types %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>House</p>
+                            <span>({{ filter_counts.House }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="checkbox" name="property_type" id="filterHostel" value="Hostel"
+                                {% if 'Hostel' in selected_property_types %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Hostel</p>
+                            <span>({{ filter_counts.Hostel }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="checkbox" name="property_type" id="filterFlat" value="Flat"
+                                {% if 'Flat' in selected_property_types %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Flat</p>
+                            <span>({{ filter_counts.Flat }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="checkbox" name="property_type" id="filterVilla" value="Villa"
+                                {% if 'Villa' in selected_property_types %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Villa</p>
+                            <span>({{ filter_counts.Villa }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="checkbox" name="property_type" id="filterGuest" value="Guest-Suite"
+                                {% if 'Guest-Suite' in selected_property_types %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Guest Suite</p>
+                            <span>({{ filter_counts.GuestSuite }})</span>
+                        </div>
+
+                        <h3>Price</h3>
+                        <div class="filter">
+                            <input type="radio" name="max_price" id="price50" value="50"
+                                {% if selected_max_price == '50' %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Upto $50</p>
+                            <span>({{ filter_counts.price_50 }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="radio" name="max_price" id="price60" value="60"
+                                {% if selected_max_price == '60' %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Upto $60</p>
+                            <span>({{ filter_counts.price_60 }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="radio" name="max_price" id="price70" value="70"
+                                {% if selected_max_price == '70' %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Upto $70</p>
+                            <span>({{ filter_counts.price_70 }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="radio" name="max_price" id="price80" value="80"
+                                {% if selected_max_price == '80' %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Upto $80</p>
+                            <span>({{ filter_counts.price_80 }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="radio" name="max_price" id="price90" value="90"
+                                {% if selected_max_price == '90' %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Upto $90</p>
+                            <span>({{ filter_counts.price_90 }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="radio" name="max_price" id="price100" value="100"
+                                {% if selected_max_price == '100' %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>Up to $100</p>
+                            <span>({{ filter_counts.price_100 }})</span>
+                        </div>
+                        <div class="filter">
+                            <input type="radio" name="max_price" id="price10000" value="10000"
+                                {% if selected_max_price == '10000' %}checked{% endif %}
+                                onchange="this.form.submit()">
+                            <p>$100+</p>
+                            <span>({{ filter_counts.price_100_plus }})</span>
+                        </div>
+                        
+                        <!-- Clear Filters Button -->
+                        <div style="margin-top: 20px;">
+                            <a href="{% url 'listing' %}?place={{ place_param }}" class="btn btn-secondary" style="display: block; text-align: center; padding: 10px; background: #f44336; color: white; text-decoration: none; border-radius: 5px;">Clear All Filters</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <img src="{% static 'main/images/arrow.png' %}" alt="">
+            <span><a href="?page=1" class="current">1</a></span>
+            <span><a href="?page=2">2</a></span>
+            <span><a href="?page=3">3</a></span>
+            <img src="{% static 'main/images/arrow.png' %}" alt="" class="right-arrow">
+        </div>
+
+        <div class="footer">
+            <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+            <p><hr><br>
+                © Copyright 2022 Sigma Team. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        var navbar = document.getElementById("navbar");
+        function togglebtn() {
+            navbar.classList.toggle("hidemenu");
+        }
+    </script>
+</body>
+</html>
