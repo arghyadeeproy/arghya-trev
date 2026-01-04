@@ -267,7 +267,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Django community for excellent documentation
 - All contributors who help improve this project
 
----
-
-**© Copyright 2022 Sigma Team. All rights reserved.**
 
