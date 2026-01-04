@@ -261,16 +261,6 @@ Contributions are welcome! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
-
-- **Sigma Team** - *Initial work* - [YourGitHub](https://github.com/yourusername)
-
-## 📞 Contact
-
-For any queries or support, please reach out to:
-- Email: support@trav.com
-- GitHub: [Issues Page](https://github.com/yourusername/trav-booking-platform/issues)
-
 ## 🙏 Acknowledgments
 
 - Font Awesome for icons
@@ -280,3 +270,4 @@ For any queries or support, please reach out to:
 ---
 
 **© Copyright 2022 Sigma Team. All rights reserved.**
+
